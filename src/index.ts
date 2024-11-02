@@ -35,6 +35,10 @@ class Flytrap {
     this.publicApiKey = config.publicKey;
   }
 
+  public captureException(e: Error): void {
+    this.logError(e, true);
+  }
+
   // * --- Private Methods --- * //
   private setupGlobalErrorHandlers(): void {
     window.addEventListener("error", (e: ErrorEvent) =>
