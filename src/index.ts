@@ -18,6 +18,7 @@ class Flytrap {
     this.projectId = config.projectId;
     this.apiEndpoint = config.apiEndpoint;
     this.publicApiKey = config.publicKey;
+    this.setupGlobalErrorHandlers();
   }
 
   public captureException(e: Error): void {
@@ -36,7 +37,6 @@ class Flytrap {
 
   private handleUncaughtException(e: ErrorEvent): void {
     const { error } = e;
-
     this.logError(error, false);
   }
 
