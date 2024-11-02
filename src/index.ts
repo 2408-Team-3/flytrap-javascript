@@ -1,3 +1,6 @@
+import * as sourceMapSupport from 'source-map-support/browser-source-map-support.js';
+sourceMapSupport.install();
+
 class Flytrap {
   private projectId: string;
   private apiEndpoint: string;
