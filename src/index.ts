@@ -8,16 +8,16 @@ sourceMapSupport.install();
 class Flytrap {
   private projectId: string;
   private apiEndpoint: string;
-  private publicApiKey: string;
+  private apiKey: string;
 
   constructor(config: {
     projectId: string;
     apiEndpoint: string;
-    publicKey: string;
+    apiKey: string;
   }) {
     this.projectId = config.projectId;
     this.apiEndpoint = config.apiEndpoint;
-    this.publicApiKey = config.publicKey;
+    this.apiKey = config.apiKey;
     this.setupGlobalErrorHandlers();
   }
 
@@ -65,9 +65,11 @@ class Flytrap {
     };
 
     try {
-      const response = await axios.post(`${this.apiEndpoint}/api/errors`, {
-        data,
-      });
+      const response = await axios.post(
+        `${this.apiEndpoint}/api/errors`,
+        { data },
+        { headers: { "x-api-key": this.apiKey } },
+      );
       console.log("[flytrap]", response.status, response.data.message);
     } catch (e) {
       console.error(e);
@@ -90,9 +92,11 @@ class Flytrap {
     };
 
     try {
-      const response = await axios.post(`${this.apiEndpoint}/api/errors`, {
-        data,
-      });
+      const response = await axios.post(
+        `${this.apiEndpoint}/api/errors`,
+        { data },
+        { headers: { "x-api-key": this.apiKey } },
+      );
       console.log("[flytrap]", response.status, response.data);
     } catch (e) {
       console.error(e);
