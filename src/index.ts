@@ -1,24 +1,9 @@
 import axios from "axios";
 import * as sourceMapSupport from "source-map-support/browser-source-map-support.js";
 import { FlytrapError } from "./utils/FlytrapError";
+import { LogData, RejectionValue } from "./types";
 
 sourceMapSupport.install();
-
-interface ErrorData {
-  name: string;
-  message: string;
-  stack: string | undefined;
-}
-
-type RejectionValue = string | number | object | null;
-
-interface LogData {
-  error?: ErrorData;
-  value?: RejectionValue;
-  handled: boolean;
-  timestamp: string;
-  project_id: string;
-}
 
 class Flytrap {
   private projectId: string;
