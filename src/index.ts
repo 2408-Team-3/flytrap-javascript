@@ -9,4 +9,17 @@ class Flytrap {
     this.publicApiKey = config.publicKey;
   }
 
+  // * --- Private Methods --- * //
+  private setupGlobalErrorHandlers(): void {
+    window.addEventListener('error', (e: ErrorEvent) => this.handleUncaughtException(e));
+  }
+
+  private handleUncaughtException(e: ErrorEvent): void {
+    const { error } = e;
+
+    this.logError(error, false);
+  }
+
+
+
 }
