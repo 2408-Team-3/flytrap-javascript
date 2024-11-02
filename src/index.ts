@@ -12,6 +12,7 @@ class Flytrap {
   // * --- Private Methods --- * //
   private setupGlobalErrorHandlers(): void {
     window.addEventListener('error', (e: ErrorEvent) => this.handleUncaughtException(e));
+    window.addEventListener('unhandledrejection', (e: PromiseRejectionEvent) => this.handleUnhandledRejection(e));
   }
 
   private handleUncaughtException(e: ErrorEvent): void {
@@ -20,6 +21,15 @@ class Flytrap {
     this.logError(error, false);
   }
 
+  private handleUnhandledRejection(e: PromiseRejectionEvent): void {
+    const { reason } = e;
+
+    if (reason instanceof Error) {
+      this.logError(reason, false);
+    } else {
+      this.logRejection(reason, false);
+    }
+  }
 
 
 }
