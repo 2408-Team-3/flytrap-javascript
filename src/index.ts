@@ -1,5 +1,24 @@
+import axios from 'axios';
 import * as sourceMapSupport from 'source-map-support/browser-source-map-support.js';
+import { FlytrapError } from './utils/FlytrapError'
+
 sourceMapSupport.install();
+
+interface ErrorData {
+  name: string;
+  message: string;
+  stack: string | undefined;
+}
+
+type RejectionValue = string | number | object | null;
+
+interface LogData {
+  error?: ErrorData;
+  value?: RejectionValue;
+  handled: boolean;
+  timestamp: string;
+  project_id: string;
+}
 
 class Flytrap {
   private projectId: string;
@@ -34,5 +53,43 @@ class Flytrap {
     }
   }
 
+  private async logError(error: Error, handled: boolean): Promise<void> {
+    if (!error) return;
 
+    const data: LogData = {
+      error: {
+        name: error.name,
+        message: error.message,
+        stack: error.stack,
+      },
+      handled,
+      timestamp: new Date().toISOString(),
+      project_id: this.projectId,
+    };
+
+    try {
+      const response = await axios.post(`${this.apiEndpoint}/api/errors`, { data });
+      console.log('[flytrap]', response.status, response.data.message);
+    } catch (e) {
+      console.error(e);
+      throw new FlytrapError('An error occured logging error data.', e instanceof Error ? e : new Error(String(e)));
+    }
+  }
+
+  private async logRejection(value: RejectionValue, handled: boolean): Promise<void> {
+    const data: LogData = {
+      value,
+      handled,
+      timestamp: new Date().toISOString(),
+      project_id: this.projectId,
+    };
+
+    try {
+      const response = await axios.post(`${this.apiEndpoint}/api/errors`, { data });
+      console.log('[flytrap]', response.status, response.data);
+    } catch (e) {
+      console.error(e);
+      throw new FlytrapError('An error occured logging error data.', e instanceof Error ? e : new Error(String(e)));
+    }
+  }
 }
