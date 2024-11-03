@@ -1,17 +1,15 @@
 import axios from "axios";
-import * as sourceMapSupport from "source-map-support/browser-source-map-support.js";
+import sourceMapSupport from 'source-map-support';
 import { FlytrapError } from "./utils/FlytrapError";
 import { LogData, RejectionValue } from "./types/types";
 import { responseSchema } from "./types/schemas";
 import { ZodError } from "zod";
 
-sourceMapSupport.install();
-
-class Flytrap {
+export default class Flytrap {
   private projectId: string;
   private apiEndpoint: string;
   private apiKey: string;
-
+  
   constructor(config: {
     projectId: string;
     apiEndpoint: string;
@@ -21,6 +19,7 @@ class Flytrap {
     this.apiEndpoint = config.apiEndpoint;
     this.apiKey = config.apiKey;
     this.setupGlobalErrorHandlers();
+    sourceMapSupport.install()
   }
 
   public captureException(e: Error): void {
@@ -39,6 +38,7 @@ class Flytrap {
 
   private handleUncaughtException(e: ErrorEvent): void {
     const { error } = e;
+    if (e.error instanceof FlytrapError) return;
     this.logError(error, false);
   }
 
@@ -46,6 +46,7 @@ class Flytrap {
     const { reason } = e;
 
     if (reason instanceof Error) {
+      if (reason instanceof FlytrapError) return;
       this.logError(reason, false);
     } else {
       this.logRejection(reason, false);
@@ -80,12 +81,11 @@ class Flytrap {
         console.error('[flytrap] Response validation error:', e.errors);
       } else {
         console.error('[flytrap] An error occured sending error data.',e);
+        throw new FlytrapError(
+          'An error occurred logging error data.',
+          e instanceof Error ? e : new Error(String(e)),
+        );
       }
-      
-      throw new FlytrapError(
-        'An error occurred logging error data.',
-        e instanceof Error ? e : new Error(String(e)),
-      );
     }
   }
 
@@ -114,14 +114,13 @@ class Flytrap {
         console.error('[flytrap] Response validation error:', e.errors);
       } else {
         console.error('[error sdk] An error occurred sending rejection data.', e);
+        throw new FlytrapError(
+          'An error occurred logging rejection data.',
+          e instanceof Error ? e : new Error(String(e)),
+        );
       }
-      
-      throw new FlytrapError(
-        'An error occurred logging rejection data.',
-        e instanceof Error ? e : new Error(String(e)),
-      );
     }
   }
 }
 
-export default Flytrap;
+// export default Flytrap;
