@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   entry: './src/index.ts',
   output: {
-    filename: 'index.js',
+    filename: 'index.debug.js',
     path: path.resolve(__dirname, 'dist'),
     library: {
       name: 'Flytrap',
@@ -28,5 +28,6 @@ module.exports = {
       },
     ],
   },
-  mode: 'production',
+  mode: 'development', // Sets Webpack to output unminified code
+  devtool: 'source-map', // Generates source maps for easier debugging
 };
