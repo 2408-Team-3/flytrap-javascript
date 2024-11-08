@@ -19,7 +19,7 @@ export default class Flytrap {
     this.apiEndpoint = config.apiEndpoint;
     this.apiKey = config.apiKey;
     this.setupGlobalErrorHandlers();
-    sourceMapSupport.install()
+    sourceMapSupport.install({ environment: 'browser' })
   }
 
   public captureException(e: Error): void {
@@ -122,5 +122,3 @@ export default class Flytrap {
     }
   }
 }
-
-// export default Flytrap;

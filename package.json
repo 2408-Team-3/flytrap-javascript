@@ -1,7 +1,7 @@
 {
   "name": "flytrap_javascript",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.debug.js",
   "scripts": {
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
