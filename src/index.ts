@@ -102,7 +102,7 @@ export default class Flytrap {
 
     try {
       const response = await axios.post(
-        `${this.apiEndpoint}/api/errors`,
+        `${this.apiEndpoint}/api/rejections`,
         { data },
         { headers: { "x-api-key": this.apiKey } },
       );
