@@ -10,7 +10,7 @@ export const setUpGlobalErrorHandlers = (): void => {
 
   window.addEventListener("error", async (e: ErrorEvent) => {
     const { error } = e;
-    if (e.error instanceof FlytrapError) return;
+    if (error instanceof FlytrapError) return;
     await logError(error, false);
     // throw error;
   });

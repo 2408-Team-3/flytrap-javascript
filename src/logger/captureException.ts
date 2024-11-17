@@ -8,12 +8,12 @@ export const captureException = (
 ): void => {
   if (!error) return;
 
-  const errorMetadata = (error as AxiosError).isAxiosError
+  const reqMetadata = (error as AxiosError).isAxiosError
     ? {
         method: (error as AxiosError).config?.method,
         url: (error as AxiosError).config?.url,
       }
     : metadata;
 
-  logError(error, true, errorMetadata);
+  logError(error, true, reqMetadata);
 };
