@@ -1,8 +1,11 @@
-import { AxiosError } from 'axios'; 
-import { logError } from './logError';
-import { Metadata as MetadataType } from '../types/types';
+import { AxiosError } from "axios";
+import { logError } from "./logError";
+import { Metadata as MetadataType } from "../types/types";
 
-export const captureException = (error: Error, metadata: MetadataType = {}): void => {
+export const captureException = (
+  error: Error,
+  metadata: MetadataType = {},
+): void => {
   if (!error) return;
 
   const errorMetadata = (error as AxiosError).isAxiosError
@@ -11,6 +14,6 @@ export const captureException = (error: Error, metadata: MetadataType = {}): voi
         url: (error as AxiosError).config?.url,
       }
     : metadata;
-  
+
   logError(error, true, errorMetadata);
-}
+};

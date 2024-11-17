@@ -1,12 +1,20 @@
-import axios from 'axios';
-import { parseStackTrace } from '../utils/stackTrace';
-import { readSourceFile } from '../utils/fileReader';
-import { getCodeContext } from '../utils/codeContext';
-import { getConfig } from '../config';
+import axios from "axios";
+import { parseStackTrace } from "../utils/stackTrace";
+import { readSourceFile } from "../utils/fileReader";
+import { getCodeContext } from "../utils/codeContext";
+import { getConfig } from "../config";
 // import { FlytrapError } from '../utils/FlytrapError';
-import { ErrorLogData, CodeContext, Metadata as MetadataType } from '../types/types';
+import {
+  ErrorLogData,
+  CodeContext,
+  Metadata as MetadataType,
+} from "../types/types";
 
-export const logError = async (error: Error, handled: boolean, metadata?: MetadataType): Promise<void> => {
+export const logError = async (
+  error: Error,
+  handled: boolean,
+  metadata?: MetadataType,
+): Promise<void> => {
   if (!error) return;
 
   const config = getConfig();
@@ -28,7 +36,7 @@ export const logError = async (error: Error, handled: boolean, metadata?: Metada
           }
         }
         return null;
-      })
+      }),
     );
     codeContexts = contexts.filter(Boolean) as CodeContext[];
   }
@@ -44,18 +52,18 @@ export const logError = async (error: Error, handled: boolean, metadata?: Metada
     timestamp: new Date().toISOString(),
     project_id: config.projectId,
     method: metadata?.method,
-    path: metadata?.url
+    path: metadata?.url,
   };
 
   try {
-    console.log('[flytrap] Sending error to backend...');
+    console.log("[flytrap] Sending error to backend...");
     const response = await axios.post(
       `${config.apiEndpoint}/api/errors`,
       { data },
-      { headers: { 'x-api-key': config.apiKey } }
+      { headers: { "x-api-key": config.apiKey } },
     );
-    console.log('[flytrap]', response.status, response.data);
+    console.log("[flytrap]", response.status, response.data);
   } catch (e) {
-    console.warn('[flytrap] Failed to log error:', e);
+    console.warn("[flytrap] Failed to log error:", e);
   }
-}
+};

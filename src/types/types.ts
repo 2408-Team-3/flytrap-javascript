@@ -17,7 +17,7 @@ export interface ErrorLogData {
 export type RejectionValue = string | number | object | null;
 
 export interface RejectionLogData {
-  value: RejectionValue
+  value: RejectionValue;
   handled: boolean;
   timestamp: string;
   project_id: string;

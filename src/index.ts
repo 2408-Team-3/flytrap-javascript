@@ -6,6 +6,6 @@ const flytrap = {
   init,
   captureException,
   FlytrapError,
-}
+};
 
 export default flytrap;

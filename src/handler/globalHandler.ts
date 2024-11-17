@@ -1,5 +1,5 @@
 import { logError } from "../logger/logError";
-import { logRejection } from "../logger/logRejection"
+import { logRejection } from "../logger/logRejection";
 import { FlytrapError } from "../utils/FlytrapError";
 
 let globalHandlersSet: boolean = false;
@@ -15,16 +15,19 @@ export const setUpGlobalErrorHandlers = (): void => {
     // throw error;
   });
 
-  window.addEventListener("unhandledrejection", async (e: PromiseRejectionEvent) => {
-    const { reason } = e;
+  window.addEventListener(
+    "unhandledrejection",
+    async (e: PromiseRejectionEvent) => {
+      const { reason } = e;
 
-    if (reason instanceof Error) {
-      if (reason instanceof FlytrapError) return;
-      await logError(reason, false);
-    } else {
-      await logRejection(reason, false);
-    }
+      if (reason instanceof Error) {
+        if (reason instanceof FlytrapError) return;
+        await logError(reason, false);
+      } else {
+        await logRejection(reason, false);
+      }
 
-    // exit???
-  });
-}
+      // exit???
+    },
+  );
+};

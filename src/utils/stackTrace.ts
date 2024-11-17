@@ -1,7 +1,7 @@
 export function parseStackTrace(stack: string | undefined) {
   if (!stack) return;
 
-  const stackLines = stack.split('\n').slice(1); // Skip the error message
+  const stackLines = stack.split("\n").slice(1); // Skip the error message
   const stackFrames = stackLines
     .map((line) => {
       const match = line.match(/(?:at\s+)?(?:.*?\s+)?(?:\()?(.+?):(\d+):(\d+)/);
