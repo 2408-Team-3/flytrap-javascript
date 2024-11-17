@@ -10,6 +10,8 @@ export interface ErrorLogData {
   handled: boolean;
   timestamp: string;
   project_id: string;
+  method?: string;
+  path?: string;
 }
 
 export type RejectionValue = string | number | object | null;
@@ -25,4 +27,9 @@ export interface CodeContext {
   line: number;
   column: number;
   context: string;
+}
+
+export interface Metadata {
+  method?: string;
+  url?: string;
 }

@@ -4,9 +4,9 @@ import { readSourceFile } from '../utils/fileReader';
 import { getCodeContext } from '../utils/codeContext';
 import { getConfig } from '../config';
 // import { FlytrapError } from '../utils/FlytrapError';
-import { ErrorLogData, CodeContext } from '../types/types';
+import { ErrorLogData, CodeContext, Metadata as MetadataType } from '../types/types';
 
-export const logError = async (error: Error, handled: boolean): Promise<void> => {
+export const logError = async (error: Error, handled: boolean, metadata?: MetadataType): Promise<void> => {
   if (!error) return;
 
   const config = getConfig();
@@ -43,6 +43,8 @@ export const logError = async (error: Error, handled: boolean): Promise<void> =>
     handled,
     timestamp: new Date().toISOString(),
     project_id: config.projectId,
+    method: metadata?.method,
+    path: metadata?.url
   };
 
   try {
