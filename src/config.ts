@@ -1,4 +1,3 @@
-import sourceMapSupport from "source-map-support";
 import { setUpGlobalErrorHandlers } from "./handler/globalHandler";
 import { FlytrapError } from "./utils/FlytrapError";
 
@@ -17,7 +16,6 @@ export const init = (config: FlytrapConfig, force: boolean = false): void => {
   }
   _config = { ...config, includeContext: config.includeContext ?? true };
   setUpGlobalErrorHandlers();
-  sourceMapSupport.install({ environment: "browser" });
 }
 
 export function getConfig(): FlytrapConfig {
