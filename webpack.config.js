@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 
 module.exports = [
   {
@@ -17,18 +16,10 @@ module.exports = [
     resolve: {
       extensions: ['.ts', '.js'],
       fallback: {
-        buffer: require.resolve('buffer/'),
-        process: require.resolve('process/browser'),
         fs: false,
         path: require.resolve('path-browserify'),
       },
     },
-    plugins: [
-      new webpack.ProvidePlugin({
-        Buffer: ['buffer', 'Buffer'],
-        process: 'process/browser',
-      }),
-    ],
     module: {
       rules: [
         {
