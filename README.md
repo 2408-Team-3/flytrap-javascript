@@ -53,6 +53,8 @@ The second argument to captureException is an optional metadata object. This can
 - method: The HTTP method (e.g., "GET", "POST").
 - url: The URL associated with the request or action that caused the error.
 
+When using axios, this metadata will automatically be captured. You don't need to pass it in explicitly.
+
 3. Source Code Context (Optional)
    When includeContext is set to true (default), Flytrap attempts to capture snippets of your source code around the error location (e.g., the file, line number, and surrounding lines).
 
