@@ -17,6 +17,7 @@
     "jest-mock": "^29.7.0",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
+    "ua-parser-js": "^2.0.0",
     "vitest": "^2.1.4"
   },
   "devDependencies": {
