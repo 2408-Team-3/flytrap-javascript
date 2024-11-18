@@ -12,7 +12,5 @@ export const getUserAgentDetails = () => {
   ? `${result.os.name} ${result.os.version || ''}`.trim() 
   : 'Unknown';
 
-  console.log('browser:', browser);
-  console.log('os:', os);
   return { browser, os }
 }
