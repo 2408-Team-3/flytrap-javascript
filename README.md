@@ -113,6 +113,6 @@ Here’s a complete example using Flytrap in a basic HTML app:
 </html>
 ```
 
-## Backend Source Map Integration (Planned)
+## Backend Source Map Integration
 
 If source maps are unavailable in the browser, you can upload your source maps to the Flytrap backend. The backend will use these to resolve minified stack traces into meaningful error locations with full context.
