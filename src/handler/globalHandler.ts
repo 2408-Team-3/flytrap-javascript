@@ -4,6 +4,14 @@ import { FlytrapError } from "../utils/FlytrapError";
 
 let globalHandlersSet: boolean = false;
 
+/**
+ * Sets up global handlers for uncaught exceptions and unhandled promise rejections in the browser environment.
+ * - Captures and logs uncaught exceptions unless they are `FlytrapError`.
+ * - Captures and logs unhandled promise rejections, including both errors and other rejection values.
+ * - Ensures handlers are only set up once per application lifecycle.
+ *
+ * @returns void
+ */
 export const setUpGlobalErrorHandlers = (): void => {
   if (globalHandlersSet) return;
   globalHandlersSet = true;
@@ -12,7 +20,6 @@ export const setUpGlobalErrorHandlers = (): void => {
     const { error } = e;
     if (error instanceof FlytrapError) return;
     await logError(error, false);
-    // throw error;
   });
 
   window.addEventListener(
@@ -26,8 +33,6 @@ export const setUpGlobalErrorHandlers = (): void => {
       } else {
         await logRejection(reason, false);
       }
-
-      // exit???
     },
   );
 };

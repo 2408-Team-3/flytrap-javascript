@@ -14,7 +14,7 @@ To start using Flytrap in your project:
 The Flytrap JavaScript SDK is designed to work in vanilla JS applications that do not use build tools. Simply include the SDK via a <script> tag in your HTML file.
 
 ```html
-<script src="https://cdn.flytrap.com/sdk/flytrap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flytrap_javascript/dist/index.js"></script>
 <script>
   // Initialize Flytrap with your project credentials
   flytrap.init({
@@ -113,6 +113,6 @@ Here’s a complete example using Flytrap in a basic HTML app:
 </html>
 ```
 
-## Backend Source Map Integration (Planned)
+## Backend Source Map Integration
 
 If source maps are unavailable in the browser, you can upload your source maps to the Flytrap backend. The backend will use these to resolve minified stack traces into meaningful error locations with full context.
