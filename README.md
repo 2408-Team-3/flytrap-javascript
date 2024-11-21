@@ -14,7 +14,7 @@ To start using Flytrap in your project:
 The Flytrap JavaScript SDK is designed to work in vanilla JS applications that do not use build tools. Simply include the SDK via a <script> tag in your HTML file.
 
 ```html
-<script src="https://cdn.flytrap.com/sdk/flytrap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flytrap_javascript/dist/index.js"></script>
 <script>
   // Initialize Flytrap with your project credentials
   flytrap.init({
