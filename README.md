@@ -170,6 +170,7 @@ If you’re looking for detailed instructions to deploy Flytrap in a production 
 - [How-To-Use Page](https://getflytrap.github.io/)
 
 For questions or issues, feel free to open an issue in this repository or contact the Flytrap team. 🚀
+
 ---
 
 <div align="center">
