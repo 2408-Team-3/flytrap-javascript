@@ -22,21 +22,26 @@ The Flytrap JavaScript SDK is designed to work in vanilla JS applications that d
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/flytrap_javascript/dist/index.js"></script>
-<script>
-  // Initialize Flytrap with your project credentials
-  flytrap.init({
-    projectId: "YOUR_PROJECT_ID",
-    apiEndpoint: "YOUR_ENDPOINT",
-    apiKey: "YOUR_API_KEY",
-  });
-</script>
 ```
 
 ## 🛠️ Usage
 
-1. **Automatically Capturing Global Errors:** The Flytrap SDK automatically sets up global error and unhandled promise rejection handlers. These handlers ensure any uncaught exceptions or rejections are captured and logged.
+1. **Initialize Flytrap:** Add the following `<script>` block to your HTML file, or include it in your main JavaScript file, to initialize Flytrap with your project credentials:
 
-2. **Manually Capturing Exceptions:** To explicitly capture errors in specific contexts (e.g., inside a `try/catch` block), use the `captureException` method:
+    ```html
+    <script>
+      // Initialize Flytrap with your project credentials
+      flytrap.init({
+        projectId: "YOUR_PROJECT_ID",
+        apiEndpoint: "YOUR_ENDPOINT",
+        apiKey: "YOUR_API_KEY",
+      });
+    </script>
+    ```
+
+2. **Automatically Capturing Global Errors:** The Flytrap SDK automatically sets up global error and unhandled promise rejection handlers. These handlers ensure any uncaught exceptions or rejections are captured and logged.
+
+3. **Manually Capturing Exceptions:** To explicitly capture errors in specific contexts (e.g., inside a `try/catch` block), use the `captureException` method:
 
     ```javascript
     try {
