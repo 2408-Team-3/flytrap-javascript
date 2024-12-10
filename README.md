@@ -8,6 +8,8 @@ This guide will walk you through setting up the Flytrap JavaScript SDK in your p
 
 To learn more about Flytrap, check out our [case study](https://getflytrap.github.io/).
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## 🚀 Getting Started
 
 To start using Flytrap in your project:
@@ -23,6 +25,8 @@ The Flytrap JavaScript SDK is designed to work in vanilla JS applications that d
 ```html
 <script src="https://cdn.jsdelivr.net/npm/flytrap_javascript/dist/index.js"></script>
 ```
+
+For more details about the package, visit the [Flytrap JavaScript SDK on npm](https://www.npmjs.com/package/flytrap_javascript).
 
 ## 🛠️ Usage
 
@@ -100,8 +104,7 @@ Here’s a complete example using Flytrap in a basic HTML app:
           } catch (e) {
             flytrap.captureException(e, {
               method: "GET",
-              url: "https://example.com/api",
-              status: 500,
+              url: "https://example.com/api"
             });
           }
         });
