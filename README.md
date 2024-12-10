@@ -104,8 +104,7 @@ Here’s a complete example using Flytrap in a basic HTML app:
           } catch (e) {
             flytrap.captureException(e, {
               method: "GET",
-              url: "https://example.com/api",
-              status: 500,
+              url: "https://example.com/api"
             });
           }
         });
